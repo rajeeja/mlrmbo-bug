@@ -89,7 +89,7 @@ ctrl = setMBOControlInfill(ctrl,
                            opt.restarts = 1, 
                            opt.focussearch.points = 1000)
 
-d1 = generateGridDesign(par.set, trafo = TRUE)
+# d1 = generateGridDesign(par.set, trafo = TRUE)
 
 design = generateDesign(n = max.budget, par.set = getParamSet(obj.fun))
 design = head(design, n = propose.points)
@@ -147,5 +147,8 @@ surr.rf = makeLearner("regr.randomForest",
 
 
 configureMlr(show.info = FALSE, show.learner.output = FALSE, on.learner.warning = "quiet")
+
+#doesn't work, learner = surr.rf as above
 res = mbo(obj.fun, design = design, learner = surr.rf, control = ctrl, show.info = TRUE)
+#works (learner = NULL)
 #res = mbo(obj.fun, design = design, learner = NULL, control = ctrl, show.info = TRUE)
